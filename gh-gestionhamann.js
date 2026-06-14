@@ -23,6 +23,7 @@
       'body{font-family:"Hanken Grotesk",system-ui,-apple-system,sans-serif!important;background:#f4f1ed!important;color:#13231c!important;}' +
       'h1,h2,h3,h4,h5,h6{font-family:"Cormorant Garamond",Georgia,serif!important;color:#13231c!important;letter-spacing:-.01em;}' +
       "h1,h2{font-weight:600!important;}" +
+      "header a{color:#13231c!important;}" +
       ".gh-contact .gh-send,#formContact .bouton-envoyer,#formContact .send-button{background:#a97d5c!important;border-radius:999px!important;}" +
       ".gh-contact .gh-send:hover,#formContact .bouton-envoyer:hover,#formContact .send-button:hover{background:#936a48!important;}";
     document.head.appendChild(ts);
