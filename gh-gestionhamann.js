@@ -156,8 +156,8 @@ var CSS=
 ".gh-contact .gh-send,#formContact .bouton-envoyer,#formContact .send-button{border-radius:3px!important;}"+
 ".gh-contact .gh-send:hover,#formContact .bouton-envoyer:hover,#formContact .send-button:hover{background:#8f6a4d!important;}"+
 ".gh-r3{border-radius:3px!important;}"+
-"footer img{height:96px!important;width:auto!important;max-width:none!important;}"+
-"header img{height:64px!important;width:auto!important;max-width:none!important;}"+
+"footer img[src*=\"/attachment/\"]{height:96px!important;width:auto!important;max-width:none!important;}"+
+"header img[src*=\"/attachment/\"]{height:64px!important;width:auto!important;max-width:none!important;}"+
 ".gh-social{display:inline-flex!important;align-items:center;justify-content:center;width:44px!important;height:44px!important;border-radius:50%!important;background:transparent!important;border:1px solid rgba(244,241,237,.35)!important;color:#f4f1ed!important;transition:background-color .2s,border-color .2s;}"+
 ".gh-social:hover{background:#a97d5c!important;border-color:#a97d5c!important;}"+
 ".gh-social svg{width:18px!important;height:18px!important;fill:#f4f1ed!important;}"+
