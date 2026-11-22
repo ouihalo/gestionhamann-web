@@ -183,7 +183,15 @@ function casse(){
   var fr=location.pathname.indexOf("/fr")===0;while((n=w.nextNode())){var t=n.nodeValue.trim();var f=FIX[t]||(fr&&FIXFR[t]);if(f)n.nodeValue=n.nodeValue.replace(t,f);else if((t==="\u00b7"||t==="\u2022")&&n.parentElement&&n.parentElement.childElementCount===0)n.parentElement.style.visibility="hidden";}
   var inp=document.querySelectorAll("input[placeholder]");for(var j=0;j<inp.length;j++){var p=inp[j].getAttribute("placeholder");if(FIX[p])inp[j].setAttribute("placeholder",FIX[p]);}
 }
-function run(){try{style();r3();social();casse();}catch(e){}}
+/* Avis Villa Montcalm : total public Airbnb (29, 4,97) + Vrbo (5, 10/10), releve le 2026-11-22. A mettre a jour au besoin. */
+var AV={fr:{n:"4,97",t:"34 avis v\u00e9rifi\u00e9s sur Airbnb et Vrbo"},en:{n:"4.97",t:"34 verified reviews on Airbnb and Vrbo"}};
+function avis(){var L=location.pathname.indexOf("/fr")===0?AV.fr:AV.en;var onM=/\/listings\/502225/.test(location.pathname);var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null);var n;
+  while((n=w.nextNode())){var t=n.nodeValue.trim();
+    if(t==="4.95"){var ok=onM;var pe=n.parentElement;if(!ok&&pe&&pe.closest('a[href*="/listings/502225"]'))ok=true;var q=pe;for(var i=0;!ok&&i<8&&q;i++){if(q.querySelector&&q.querySelector('a[href*="/listings/502225"]')){ok=!q.querySelector('a[href*="/listings/"]:not([href*="502225"])');break;}q=q.parentElement;}if(ok)n.nodeValue=n.nodeValue.replace("4.95",L.n);}
+    else if(onM&&(t==="1 avis"||t==="1 review"||t==="1 Review"))n.nodeValue=n.nodeValue.replace(t,L.t);
+    else if(onM&&t==="(1)")n.nodeValue=n.nodeValue.replace("(1)","(34)");}
+}
+function run(){try{style();r3();social();casse();avis();}catch(e){}}
 if(document.readyState!=="loading")run();document.addEventListener("DOMContentLoaded",run);
 var k=0,iv=setInterval(function(){run();if(++k>40)clearInterval(iv);},250);
 if(window.MutationObserver){var q;new MutationObserver(function(){clearTimeout(q);q=setTimeout(run,150);}).observe(document.documentElement,{childList:true,subtree:true});}
