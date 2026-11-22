@@ -77,11 +77,11 @@
     var fr = location.pathname.indexOf("/fr") === 0;
     return fr ? {
       eb: "GESTION · PERFORMANCE · EXPÉRIENCES SUR MESURE",
-      p: "Des propriétés d'exception, sélectionnées avec exigence et entretenues comme si elles étaient les nôtres. On s'occupe de tout.",
+      p: "Des propriétés d'exception, sélectionnées et entretenues comme si elles étaient les nôtres. Et surtout, un service attentionné pour les propriétaires comme pour les voyageurs.",
       c1: "Découvrir les propriétés", c2: "Confier ma propriété", px: "/fr"
     } : {
       eb: "MANAGEMENT · PERFORMANCE · CUSTOM EXPERIENCES",
-      p: "Exceptional properties, selected with care and looked after as if they were our own. We handle everything.",
+      p: "Exceptional properties, selected and looked after as if they were our own. Above all, attentive service for owners and guests alike.",
       c1: "Discover the properties", c2: "Entrust my property", px: ""
     };
   }
@@ -140,3 +140,50 @@
 
 /* Footer : copyright dynamique (annee auto) + lien HALO */
 (function(){function c(){var f=document.querySelector("footer");if(!f)return;var fr=location.pathname.indexOf("/fr")===0;var a=[].filter.call(f.querySelectorAll("div"),function(d){if(d.closest("a"))return false;var o=[].filter.call(d.childNodes,function(n){return n.nodeType===3;}).map(function(n){return n.textContent;}).join("").trim();return o==="Gestion Hamann";});var el=a[a.length-1];if(!el)return;var y=new Date().getFullYear();var t=fr?"Copyright \u00a9 "+y+" Gestion Hamann. Tous droits r\u00e9serv\u00e9s. Par ":"Copyright \u00a9 "+y+" Gestion Hamann. All rights reserved. By ";el.innerHTML=t+'<a href="https://ouihalo.com/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">HALO</a>.';}function r(){try{c();}catch(e){}}if(document.readyState!=="loading")r();document.addEventListener("DOMContentLoaded",r);var n=0,iv=setInterval(function(){r();if(++n>40)clearInterval(iv);},250);if(window.MutationObserver){var q;new MutationObserver(function(){clearTimeout(q);q=setTimeout(r,150);}).observe(document.documentElement,{childList:true,subtree:true});}})();
+
+/* Coherence 2026-11 : boutons 3 px, heros lisible, pied de page, casse des libelles */
+(function(){
+var CSS=
+".gh-eyebrow{display:none!important;}"+
+".gh-cta{min-height:52px;padding:0 34px!important;border-radius:3px!important;font-weight:500!important;font-size:13px!important;letter-spacing:.12em;text-transform:uppercase;line-height:1;border:1px solid transparent;transition:background-color .2s,border-color .2s,color .2s;}"+
+".gh-cta-primary{background:#a97d5c!important;border-color:#a97d5c!important;color:#fff!important;}"+
+".gh-cta-primary:hover{background:#8f6a4d!important;border-color:#8f6a4d!important;}"+
+".gh-cta-light{background:rgba(244,241,237,.16)!important;border:2px solid #f4f1ed!important;color:#fff!important;font-weight:600!important;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);}"+
+".gh-cta-light:hover{background:#f4f1ed!important;color:#13231c!important;}"+
+".gh-hero-block>h1 .gh-l2{color:#a97d5c!important;}"+
+".gh-hero-block>p{border-top:0!important;padding-top:0!important;font-weight:500!important;font-size:19px!important;line-height:30px!important;color:#f4f1ed!important;text-shadow:0 1px 12px rgba(0,0,0,.45);}"+
+".gh-hero-scrim{background:linear-gradient(90deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,.3) 45%,rgba(0,0,0,.05) 100%)!important;}"+
+".gh-contact .gh-send,#formContact .bouton-envoyer,#formContact .send-button{border-radius:3px!important;}"+
+".gh-contact .gh-send:hover,#formContact .bouton-envoyer:hover,#formContact .send-button:hover{background:#8f6a4d!important;}"+
+".gh-r3{border-radius:3px!important;}"+
+"footer img{height:96px!important;width:auto!important;max-width:none!important;}"+
+"header img{height:64px!important;width:auto!important;max-width:none!important;}"+
+".gh-social{display:inline-flex!important;align-items:center;justify-content:center;width:44px!important;height:44px!important;border-radius:50%!important;background:transparent!important;border:1px solid rgba(244,241,237,.35)!important;color:#f4f1ed!important;transition:background-color .2s,border-color .2s;}"+
+".gh-social:hover{background:#a97d5c!important;border-color:#a97d5c!important;}"+
+".gh-social svg{width:18px!important;height:18px!important;fill:#f4f1ed!important;}"+
+".gh-nocap{text-transform:none!important;}"+
+".gh-nb::before,.gh-na::after{background:transparent!important;}"+
+".gh-btn-search{border-radius:3px!important;font-family:\"Hanken Grotesk\",sans-serif!important;font-weight:500!important;font-size:13px!important;letter-spacing:.12em!important;text-transform:uppercase!important;}"+
+".gh-btn-search:hover{background:#8f6a4d!important;}";
+function style(){if(document.getElementById("gh-coherence"))return;var s=document.createElement("style");s.id="gh-coherence";s.textContent=CSS;document.head.appendChild(s);}
+function r3(){
+  var els=document.querySelectorAll("button,a,input,select,form,div,label");
+  for(var i=0;i<els.length;i++){var e=els[i];if(e.classList.contains("gh-r3")||e.closest("footer"))continue;
+    var w=e.offsetWidth,h=e.offsetHeight;if(!w||!h||Math.abs(w-h)<4)continue;
+    var r=parseFloat(getComputedStyle(e).borderTopLeftRadius);if(r>=12){e.classList.add("gh-r3");e.style.setProperty("border-radius","3px","important");}}
+}
+function social(){var a=document.querySelectorAll('footer a[href*="facebook"],footer a[href*="instagram"],footer a[href*="linkedin"]');for(var i=0;i<a.length;i++)a[i].classList.add("gh-social");}
+var FIX={"Choisir La Date":"Choisir la date","Add Date":"Add date"};
+function casse(){
+  var all=document.querySelectorAll("body *");for(var m=0;m<all.length;m++){var el=all[m];if(el.childElementCount===0&&!el.classList.contains("gh-nocap")&&getComputedStyle(el).textTransform==="capitalize")el.classList.add("gh-nocap");}
+  var dd=document.querySelectorAll("header *,footer *,span,li,div");for(var z=0;z<dd.length;z++){var de=dd[z];if(de.__ghd)continue;de.__ghd=1;var ps=["::before","::after"];for(var y=0;y<2;y++){var cs=getComputedStyle(de,ps[y]);if(cs.content==="none"||cs.content==="normal")continue;var ww=parseFloat(cs.width),hh=parseFloat(cs.height);if(ww>0&&ww<=6&&hh>0&&hh<=6)de.classList.add(y?"gh-na":"gh-nb");}}
+  var bs=document.querySelectorAll("button");for(var b=0;b<bs.length;b++){var tx=(bs[b].innerText||"").trim();if(tx==="Rechercher"||tx==="Search")bs[b].classList.add("gh-btn-search");}
+  var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null);var n;
+  while((n=w.nextNode())){var t=n.nodeValue.trim();if(FIX[t])n.nodeValue=n.nodeValue.replace(t,FIX[t]);}
+  var inp=document.querySelectorAll("input[placeholder]");for(var j=0;j<inp.length;j++){var p=inp[j].getAttribute("placeholder");if(FIX[p])inp[j].setAttribute("placeholder",FIX[p]);}
+}
+function run(){try{style();r3();social();casse();}catch(e){}}
+if(document.readyState!=="loading")run();document.addEventListener("DOMContentLoaded",run);
+var k=0,iv=setInterval(function(){run();if(++k>40)clearInterval(iv);},250);
+if(window.MutationObserver){var q;new MutationObserver(function(){clearTimeout(q);q=setTimeout(run,150);}).observe(document.documentElement,{childList:true,subtree:true});}
+})();
