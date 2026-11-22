@@ -174,12 +174,13 @@ function r3(){
 }
 function social(){var a=document.querySelectorAll('footer a[href*="facebook"],footer a[href*="instagram"],footer a[href*="linkedin"]');for(var i=0;i<a.length;i++)a[i].classList.add("gh-social");}
 var FIX={"Choisir La Date":"Choisir la date","Add Date":"Add date","Nos meilleures propri\u00e9t\u00e9s":"En vedette","Our top properties":"Featured"};
+var FIXFR={"Kitchen":"Cuisine","Air conditioning":"Climatisation","Washing Machine":"Machine \u00e0 laver"};
 function casse(){
   var all=document.querySelectorAll("body *");for(var m=0;m<all.length;m++){var el=all[m];if(el.childElementCount===0&&!el.classList.contains("gh-nocap")&&getComputedStyle(el).textTransform==="capitalize")el.classList.add("gh-nocap");}
   var dd=document.querySelectorAll("header *,footer *,span,li,div");for(var z=0;z<dd.length;z++){var de=dd[z];if(de.__ghd)continue;de.__ghd=1;var ps=["::before","::after"];for(var y=0;y<2;y++){var cs=getComputedStyle(de,ps[y]);if(cs.content==="none"||cs.content==="normal")continue;var ww=parseFloat(cs.width),hh=parseFloat(cs.height);if(ww>0&&ww<=6&&hh>0&&hh<=6)de.classList.add(y?"gh-na":"gh-nb");}}
   var bs=document.querySelectorAll("button");for(var b=0;b<bs.length;b++){var tx=(bs[b].innerText||"").trim();if(tx==="Rechercher"||tx==="Search")bs[b].classList.add("gh-btn-search");}
   var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null);var n;
-  while((n=w.nextNode())){var t=n.nodeValue.trim();if(FIX[t])n.nodeValue=n.nodeValue.replace(t,FIX[t]);}
+  var fr=location.pathname.indexOf("/fr")===0;while((n=w.nextNode())){var t=n.nodeValue.trim();var f=FIX[t]||(fr&&FIXFR[t]);if(f)n.nodeValue=n.nodeValue.replace(t,f);else if((t==="\u00b7"||t==="\u2022")&&n.parentElement&&n.parentElement.childElementCount===0)n.parentElement.style.visibility="hidden";}
   var inp=document.querySelectorAll("input[placeholder]");for(var j=0;j<inp.length;j++){var p=inp[j].getAttribute("placeholder");if(FIX[p])inp[j].setAttribute("placeholder",FIX[p]);}
 }
 function run(){try{style();r3();social();casse();}catch(e){}}
