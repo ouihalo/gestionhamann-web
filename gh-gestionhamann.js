@@ -197,3 +197,38 @@ if(document.readyState!=="loading")run();document.addEventListener("DOMContentLo
 var k=0,iv=setInterval(function(){run();if(++k>40)clearInterval(iv);},250);
 if(window.MutationObserver){var q;new MutationObserver(function(){clearTimeout(q);q=setTimeout(run,150);}).observe(document.documentElement,{childList:true,subtree:true});}
 })();
+
+/* SEO 2026-11 : titres et descriptions FR/EN, redirections des pages en double, H1 Contact, bouton pause mobile */
+(function(){
+var SEO={
+fr:{
+home:["Gestion Hamann | Location court terme haut de gamme","Découvrez la sélection de locations haut de gamme de Gestion Hamann. Des propriétés d'exception, une réservation simple et des séjours mémorables."],
+listings:["Nos propriétés | Gestion Hamann","Parcourez toutes nos locations haut de gamme. Filtrez par destination, dates et nombre de voyageurs pour trouver votre séjour avec Gestion Hamann."],
+about:["À propos | Gestion Hamann","Découvrez Gestion Hamann, entreprise de location court terme haut de gamme qui offre des séjours d'exception aux voyageurs du monde entier."],
+contact:["Contact | Gestion Hamann","Une question ou une demande de réservation? Écrivez à Gestion Hamann. Chaque message reçoit une réponse personnelle."],
+owners:["Services aux propriétaires | Gestion Hamann","Résidences secondaires, chalets et condos haut de gamme. Gestion Hamann prend en charge les opérations, l'expérience des voyageurs et la performance de votre propriété."],
+privacy:["Politique de confidentialité | Gestion Hamann",null],
+terms:["Termes et conditions | Gestion Hamann",null]},
+en:{
+owners:["Property Owner Services | Gestion Hamann","Second homes, chalets and high-end condos. Gestion Hamann handles operations, the guest experience and the performance of your property."],
+contact:["Contact | Gestion Hamann","Have a question or a booking inquiry? Get in touch with Gestion Hamann. We personally respond to every message."],
+privacy:["Privacy Policy | Gestion Hamann",null],
+terms:["Terms and Conditions | Gestion Hamann",null]}};
+function info(){var raw=location.pathname;try{raw=decodeURIComponent(raw);}catch(e){}var fr=raw.indexOf("/fr")===0;var p=raw.replace(/^\/fr/,"").replace(/\/$/,"");return {fr:fr,p:p};}
+function redirect(){var i=info(),px=i.fr?"/fr":"";
+  if(i.p==="/pages/about-us2"){location.replace(px+"/about-us");return true;}
+  if(i.p==="/pages/contact-us"||i.p==="/contact-us"){location.replace(px+"/pages/contact");return true;}
+  return false;}
+function key(p){if(p==="")return "home";if(p==="/all-listings")return "listings";if(p==="/about-us")return "about";if(p==="/pages/contact")return "contact";if(p.indexOf("/pages/services-aux-propri")===0)return "owners";if(p==="/privacy-policy")return "privacy";if(p==="/terms-and-conditions")return "terms";return null;}
+function meta(){var i=info(),k=key(i.p),d=(i.fr?SEO.fr:SEO.en)[k];
+  if(d){if(document.title!==d[0])document.title=d[0];
+    if(d[1]){var m=document.querySelector('meta[name="description"]');if(!m){m=document.createElement("meta");m.setAttribute("name","description");document.head.appendChild(m);}if(m.getAttribute("content")!==d[1])m.setAttribute("content",d[1]);}}
+  else if(document.title.indexOf(" \u2014 ")>-1){document.title=document.title.split(" \u2014 ")[0]+" | Gestion Hamann";}}
+function h1(){var i=info();if(i.p!=="/pages/contact"||document.querySelector("h1"))return;var h=document.querySelector("main h2, h2");if(!h)return;var n=document.createElement("h1");n.className=h.className;n.setAttribute("style",h.getAttribute("style")||"");n.innerHTML=h.innerHTML;h.parentNode.replaceChild(n,h);}
+function pause(){var v=document.querySelector("video");if(!v)return;var box=v.parentElement;for(var k=0;k<4&&box&&!box.querySelector("button");k++)box=box.parentElement;if(!box)return;var bs=box.querySelectorAll("button");for(var j=0;j<bs.length;j++){var b=bs[j];if(b.getBoundingClientRect().bottom>v.getBoundingClientRect().bottom-140&&Math.abs(b.offsetWidth-b.offsetHeight)<4&&b.offsetWidth>0&&b.offsetWidth<60&&getComputedStyle(b).position==="absolute")b.classList.add("gh-pause");}
+  if(!document.getElementById("gh-seo-style")){var s=document.createElement("style");s.id="gh-seo-style";s.textContent="@media(max-width:900px){.gh-pause{top:14px!important;bottom:auto!important;}}";document.head.appendChild(s);}}
+function run(){try{if(redirect())return;meta();h1();pause();}catch(e){}}
+if(document.readyState!=="loading")run();document.addEventListener("DOMContentLoaded",run);
+var k=0,iv=setInterval(function(){run();if(++k>40)clearInterval(iv);},250);
+if(window.MutationObserver){var q;new MutationObserver(function(){clearTimeout(q);q=setTimeout(run,200);}).observe(document.documentElement,{childList:true,subtree:true});}
+})();
