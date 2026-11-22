@@ -167,10 +167,10 @@ var CSS=
 ".gh-btn-search:hover{background:#8f6a4d!important;}";
 function style(){if(document.getElementById("gh-coherence"))return;var s=document.createElement("style");s.id="gh-coherence";s.textContent=CSS;document.head.appendChild(s);}
 function r3(){
-  var els=document.querySelectorAll("button,a,input,select,form,div,label");
+  var els=document.querySelectorAll("button,a,input,select,form,div,label,span,img");
   for(var i=0;i<els.length;i++){var e=els[i];if(e.classList.contains("gh-r3")||e.closest("footer"))continue;
     var w=e.offsetWidth,h=e.offsetHeight;if(!w||!h||Math.abs(w-h)<4)continue;
-    var r=parseFloat(getComputedStyle(e).borderTopLeftRadius);if(r>=12){e.classList.add("gh-r3");e.style.setProperty("border-radius","3px","important");}}
+    var r=parseFloat(getComputedStyle(e).borderTopLeftRadius);if(r>=6){e.classList.add("gh-r3");e.style.setProperty("border-radius","3px","important");}}
 }
 function social(){var a=document.querySelectorAll('footer a[href*="facebook"],footer a[href*="instagram"],footer a[href*="linkedin"]');for(var i=0;i<a.length;i++)a[i].classList.add("gh-social");}
 var FIX={"Choisir La Date":"Choisir la date","Add Date":"Add date","Nos meilleures propri\u00e9t\u00e9s":"En vedette","Our top properties":"Featured"};
