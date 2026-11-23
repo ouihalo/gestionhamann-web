@@ -297,7 +297,10 @@ var CSS=
 "section#proprietes{padding-bottom:clamp(56px,7vw,96px)!important;margin-top:clamp(56px,7vw,96px)!important}"+
 ".gh-filtres{justify-content:flex-start!important;gap:12px!important}.gh-filtres>label{margin:0!important}"+
 ".gh-listh1{font-family:'Cormorant Garamond',Georgia,serif!important;font-weight:600!important;font-size:clamp(36px,4vw,52px)!important;line-height:1.05!important;margin:24px 0 8px!important}"+
-"@media(min-width:901px){.gh-noicon svg{display:none!important}}"+
+"@media(min-width:901px){.gh-noicon svg{display:none!important}.gh-noicon>span{margin-left:0!important}.gh-noicon{height:40px!important;min-height:40px!important;margin-top:12px!important;padding:0 24px!important}}"+
+".ghm .founder img{object-fit:cover!important;object-position:50% 20%!important}"+
+"body.gh-listing main{padding-bottom:clamp(56px,7vw,96px)!important}"+
+"#mikael{padding-bottom:clamp(56px,7vw,96px)!important}"+
 ".gh-desc{font-family:'Hanken Grotesk',system-ui,sans-serif!important;font-size:17px!important;line-height:1.75!important;font-weight:400!important;color:#2f3b35!important;letter-spacing:0!important}"+
 ".gh-abouttext p{text-align:left!important}"+
 "@media(max-width:900px){.gh-hd .logo img,.gh-ft .logo img{margin-left:0!important}body.gh-listing footer.gh-ft{padding-bottom:120px!important}main .gh-contactpage{padding-top:0!important}}"+
