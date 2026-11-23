@@ -294,7 +294,7 @@ var CSS=
 "section#proprietes{padding-bottom:clamp(56px,7vw,96px)!important;margin-top:clamp(56px,7vw,96px)!important}"+
 ".gh-filtres{justify-content:flex-start!important;gap:12px!important}.gh-filtres>label{margin:0!important}"+
 ".gh-listh1{font-family:'Cormorant Garamond',Georgia,serif!important;font-weight:600!important;font-size:clamp(36px,4vw,52px)!important;line-height:1.05!important;margin:24px 0 8px!important}"+
-".gh-noicon svg{display:none!important}"+
+"@media(min-width:901px){.gh-noicon svg{display:none!important}}"+
 ".kicker{display:none!important}.n{display:none!important}ol.steps>li::before,ul.steps>li::before,.steps>li::before{display:none!important}"+
 "li.gh-nodash::before{display:none!important}li.gh-nodash{padding-left:0!important;display:block!important}.gh-non{display:block!important}section#proprietes h2{text-align:left!important}"+
 "main blockquote::before{display:none!important}"+
