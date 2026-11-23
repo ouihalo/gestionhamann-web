@@ -322,7 +322,8 @@ var CSS=
 "h1 em,h2 em,h3 em,body .ghm h2 em,body .ghm .remote h2 em,body .gh-hero-block>h1 .gh-l2{font-weight:400!important}"+
 "#ghm-about #formulaire-contact h2 em{font-style:italic;color:#a97d5c}"+
 "#ghm-about .ghm-form,#ghm-about .ghm-form .gh-contact{width:100%!important;max-width:none!important;margin-left:0!important;margin-right:0!important}"+
-"@media(min-width:900px){#ghm-about .form-wrap{grid-template-columns:minmax(0,5fr) minmax(0,7fr)!important;column-gap:clamp(48px,6vw,96px)!important;max-width:1240px!important;align-items:start!important}#ghm-about .form-aside{max-width:none!important;position:sticky;top:calc(var(--gh-head,0px) + 96px)}}";
+"@media(min-width:900px){#ghm-about .form-wrap{grid-template-columns:minmax(0,5fr) minmax(0,7fr)!important;column-gap:clamp(48px,6vw,96px)!important;max-width:1240px!important;align-items:start!important}#ghm-about .form-aside{max-width:none!important;position:sticky;top:calc(var(--gh-head,0px) + 96px)}}"+
+"main .gh-contactpage.gh-cdone{padding-top:clamp(24px,4vw,48px)!important}.gh-cgrid{display:grid;grid-template-columns:1fr;gap:48px;text-align:left}.gh-caside h1{margin:0 0 24px!important}.gh-caside>p:not(.gh-cown){margin:0!important;max-width:56ch;font-size:17px!important;line-height:1.75!important;color:#2f3b35!important;text-align:left!important}.gh-cinfo{list-style:none;margin:36px 0 0!important;padding:0!important;border-top:1px solid rgba(19,35,28,.14)}.gh-cinfo li{display:flex;justify-content:space-between;align-items:baseline;gap:24px;margin:0;padding:16px 0;border-bottom:1px solid rgba(19,35,28,.14);font:400 15px/1.5 'Hanken Grotesk',sans-serif;color:#4a524e}.gh-cinfo li::before{display:none!important}.gh-cinfo a,.gh-cinfo b{font:500 21px/1.2 'Cormorant Garamond',Georgia,serif;color:#13231c!important;text-decoration:none!important;overflow-wrap:anywhere;text-align:right}.gh-cinfo a:hover{color:#8f6a4d!important}.gh-cown{margin:32px 0 0!important;font-size:16px!important;line-height:1.7!important;color:#4a524e!important}.gh-cown a{color:#8a6246!important;font-weight:500;text-decoration:none!important;border-bottom:1px solid currentColor}.gh-cown a:hover{color:#8f6a4d!important}.gh-cform .gh-contact{max-width:none!important;width:100%!important;margin:0!important}@media(min-width:900px){.gh-cgrid{grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:clamp(48px,6vw,96px);align-items:start}.gh-caside{position:sticky;top:calc(var(--gh-head,0px) + 32px)}}";
 function info(){var raw=location.pathname;try{raw=decodeURIComponent(raw);}catch(e){}var fr=raw.indexOf("/fr")===0;var p=raw.replace(/^\/fr/,"").replace(/\/$/,"");return {fr:fr,p:p,t:fr?L.fr:L.en,px:fr?"/fr":""};}
 function style(){if(document.getElementById("gh-gabarit"))return;var s=document.createElement("style");s.id="gh-gabarit";s.textContent=CSS;document.head.appendChild(s);}
 function header(i){
@@ -345,6 +346,19 @@ function footer(i){
   f.innerHTML='<div class="wrap"><a class="logo" href="'+(i.fr?"/fr":"/")+'"><img src="'+LOGO+'" alt="Gestion Hamann"></a><nav aria-label="Liens"><a href="'+i.px+i.t.privacy[0]+'">'+i.t.privacy[1]+'</a><a href="'+i.px+i.t.terms[0]+'">'+i.t.terms[1]+'</a></nav><div class="soc">'+soc+'</div><p class="bas">Copyright \u00a9 '+new Date().getFullYear()+' Gestion Hamann. '+i.t.copy+'<a href="https://ouihalo.com/" target="_blank" rel="noopener">HALO</a>.</p></div>';
   nat.parentNode.insertBefore(f,nat.nextSibling);
 }
+function contactPage(i){
+  var c=document.querySelector(".gh-contactpage");if(!c||c.classList.contains("gh-cdone"))return;
+  var h=c.querySelector("h1"),f=c.querySelector(".gh-contact");if(!h||!f)return;
+  var p=h.nextElementSibling,fr=i.fr,own=null,hl=document.querySelectorAll("#gh-hd a");
+  for(var k=0;k<hl.length;k++){if(/services aux|owner/i.test(hl[k].textContent)){own=hl[k].getAttribute("href");break;}}
+  var g=document.createElement("div");g.className="gh-cgrid";var a=document.createElement("div");a.className="gh-caside";var fc=document.createElement("div");fc.className="gh-cform";
+  c.insertBefore(g,h);a.appendChild(h);if(p&&p.tagName==="P")a.appendChild(p);
+  var ul=document.createElement("ul");ul.className="gh-cinfo";
+  ul.innerHTML='<li><span>'+(fr?"T\u00e9l\u00e9phone":"Phone")+'</span><a href="tel:+14185708186">418 570-8186</a></li><li><span>'+(fr?"Courriel":"Email")+'</span><a href="mailto:mikael@gestionhamann.com">mikael@gestionhamann.com</a></li><li><span>'+(fr?"Langues":"Languages")+'</span><b>'+(fr?"Fran\u00e7ais et anglais":"English and French")+'</b></li>';
+  a.appendChild(ul);
+  if(own){var o=document.createElement("p");o.className="gh-cown";o.innerHTML=(fr?"Vous \u00eates propri\u00e9taire?":"Own a property?")+' <a href="'+own+'">'+(fr?"D\u00e9couvrir nos services aux propri\u00e9taires":"Explore our owner services")+'</a>';a.appendChild(o);}
+  g.appendChild(a);fc.appendChild(f);g.appendChild(fc);c.classList.add("gh-cdone");
+}
 function fixes(i){
   var m=document.querySelector("main");if(!m)return;
   var fh=document.querySelector("#ghm-about #formulaire-contact h2");if(fh&&!fh.querySelector("em")){fh.innerHTML=fh.innerHTML.replace(/(commencer|started)\./,"<em>$1</em>.");}
@@ -352,7 +366,7 @@ function fixes(i){
   var labs=document.querySelectorAll("section label");for(var j=0;j<labs.length;j++){var inp=labs[j].querySelector("input[type=checkbox],input[type=radio]");if(inp&&!labs[j].closest("form")&&labs[j].parentElement)labs[j].parentElement.classList.add("gh-filtres");}
 
   for(var k2=0;k2<as.length;k2++){var a2=as[k2];if(a2.closest("li")||a2.closest(".ghm"))continue;var gp=a2.parentElement;for(var u=0;u<3&&gp;u++){if(getComputedStyle(gp).display==="grid"){gp.classList.add("gh-grid2");break;}gp=gp.parentElement;}}
-  if(i.p==="/pages/contact"){var hc=m.querySelector("h1");if(hc&&hc.parentElement&&!hc.parentElement.classList.contains("gh-contactpage")){hc.parentElement.classList.add("gh-contactpage");var pv=hc.previousElementSibling;if(pv&&pv.textContent.trim().length<20)pv.classList.add("gh-hide");}}
+  if(i.p==="/pages/contact"){var hc=m.querySelector("h1");if(hc&&hc.parentElement&&!hc.closest(".gh-contactpage")){hc.parentElement.classList.add("gh-contactpage");var pv=hc.previousElementSibling;if(pv&&pv.textContent.trim().length<20)pv.classList.add("gh-hide");}contactPage(i);}
   if(i.p==="/about-us"){var ha=m.querySelector("h1");if(ha)ha.classList.add("gh-abouth1");var ps=m.querySelectorAll("p");for(var w=0;w<ps.length;w++){var tx=ps[w].textContent.trim();if(!ps[w].closest(".ghm")){if(/^(Un s\u00e9jour exceptionnel|An exceptional stay|A great stay)/.test(tx)&&ps[w].parentElement)ps[w].parentElement.classList.add("gh-abouttext");if(tx==="-"||tx==="\u2014")ps[w].classList.add("gh-hide");if(/^Mika[e\u00eb]l Hamann$/.test(tx))ps[w].classList.add("gh-sig");if(/^(Gestionnaire|Short-term|Hospitality|Manager)/.test(tx)&&/ - /.test(tx)){ps[w].innerHTML=ps[w].innerHTML.replace(/ - /g,"<br>");ps[w].classList.add("gh-sig");}else if(/^(Gestionnaire|Hospitality|Founder|Fondateur)/.test(tx)&&tx.length<120)ps[w].classList.add("gh-sig");}}}
   document.body.classList.toggle("gh-listing",/\/listings\//.test(i.p));
   if(/\/listings\//.test(i.p)){var hd=m.querySelectorAll("h2");for(var d2=0;d2<hd.length;d2++){if(hd[d2].textContent.length>150&&!hd[d2].classList.contains("gh-desc")){hd[d2].classList.add("gh-desc");var tn=hd[d2].firstChild;if(tn&&tn.nodeType===3&&!/\s$/.test(tn.nodeValue)){var sp2=tn.nodeValue.lastIndexOf(" ");if(sp2>100)tn.nodeValue=tn.nodeValue.slice(0,sp2);}}}}
