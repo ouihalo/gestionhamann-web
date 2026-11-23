@@ -319,7 +319,10 @@ var CSS=
 "main a.cta,main a.btn.btn-dark{background:#a97d5c!important;border-color:#a97d5c!important;color:#fff!important}"+
 "main a.cta:hover,main a.btn.btn-dark:hover{background:#8f6a4d!important;border-color:#8f6a4d!important}"+
 "h1,h2,h3,h4,h5,h6,body .ghm h1,body .ghm h2,body .ghm h3,body .gh-listh1,body .gh-abouth1,body .gh-contactpage h1,body .gh-hero-block>h1 span{font-weight:500!important}"+
-"h1 em,h2 em,h3 em,body .ghm h2 em,body .ghm .remote h2 em,body .gh-hero-block>h1 .gh-l2{font-weight:400!important}";
+"h1 em,h2 em,h3 em,body .ghm h2 em,body .ghm .remote h2 em,body .gh-hero-block>h1 .gh-l2{font-weight:400!important}"+
+"#ghm-about #formulaire-contact h2 em{font-style:italic;color:#a97d5c}"+
+"#ghm-about .ghm-form,#ghm-about .ghm-form .gh-contact{width:100%!important;max-width:none!important;margin-left:0!important;margin-right:0!important}"+
+"@media(min-width:900px){#ghm-about .form-wrap{grid-template-columns:minmax(0,5fr) minmax(0,7fr)!important;column-gap:clamp(48px,6vw,96px)!important;max-width:1240px!important;align-items:start!important}#ghm-about .form-aside{max-width:none!important;position:sticky;top:calc(var(--gh-head,0px) + 96px)}}";
 function info(){var raw=location.pathname;try{raw=decodeURIComponent(raw);}catch(e){}var fr=raw.indexOf("/fr")===0;var p=raw.replace(/^\/fr/,"").replace(/\/$/,"");return {fr:fr,p:p,t:fr?L.fr:L.en,px:fr?"/fr":""};}
 function style(){if(document.getElementById("gh-gabarit"))return;var s=document.createElement("style");s.id="gh-gabarit";s.textContent=CSS;document.head.appendChild(s);}
 function header(i){
@@ -344,6 +347,7 @@ function footer(i){
 }
 function fixes(i){
   var m=document.querySelector("main");if(!m)return;
+  var fh=document.querySelector("#ghm-about #formulaire-contact h2");if(fh&&!fh.querySelector("em")){fh.innerHTML=fh.innerHTML.replace(/(commencer|started)\./,"<em>$1</em>.");}
   var as=m.querySelectorAll("a[href*='/listings/']");for(var k=0;k<as.length;k++){var li=as[k].closest("li"),ul=li&&li.parentElement;if(ul&&ul.tagName==="UL"&&!ul.classList.contains("gh-grid")&&!ul.closest(".ghm"))ul.classList.add("gh-grid");}
   var labs=document.querySelectorAll("section label");for(var j=0;j<labs.length;j++){var inp=labs[j].querySelector("input[type=checkbox],input[type=radio]");if(inp&&!labs[j].closest("form")&&labs[j].parentElement)labs[j].parentElement.classList.add("gh-filtres");}
 
