@@ -175,13 +175,14 @@ function r3(){
 }
 function social(){var a=document.querySelectorAll('footer a[href*="facebook"],footer a[href*="instagram"],footer a[href*="linkedin"]');for(var i=0;i<a.length;i++)a[i].classList.add("gh-social");}
 var FIX={"Choisir La Date":"Choisir la date","Add Date":"Add date","Nos meilleures propri\u00e9t\u00e9s":"En vedette","Our top properties":"Featured"};
+var FIXEN={"Washing Machine":"Washing machine"};
 var FIXFR={"Kitchen":"Cuisine","Air conditioning":"Climatisation","Washing Machine":"Machine \u00e0 laver"};
 function casse(){
   var all=document.querySelectorAll("body *");for(var m=0;m<all.length;m++){var el=all[m];if(el.childElementCount===0&&!el.classList.contains("gh-nocap")&&getComputedStyle(el).textTransform==="capitalize")el.classList.add("gh-nocap");}
   var dd=document.querySelectorAll("header *,footer *,span,li,div");for(var z=0;z<dd.length;z++){var de=dd[z];if(de.__ghd)continue;de.__ghd=1;var ps=["::before","::after"];for(var y=0;y<2;y++){var cs=getComputedStyle(de,ps[y]);if(cs.content==="none"||cs.content==="normal")continue;var ww=parseFloat(cs.width),hh=parseFloat(cs.height);if(ww>0&&ww<=6&&hh>0&&hh<=6)de.classList.add(y?"gh-na":"gh-nb");}}
   var bs=document.querySelectorAll("button");for(var b=0;b<bs.length;b++){var tx=(bs[b].innerText||"").trim();if(tx==="Rechercher"||tx==="Search")bs[b].classList.add("gh-btn-search");}
   var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null);var n;
-  var fr=location.pathname.indexOf("/fr")===0;while((n=w.nextNode())){var t=n.nodeValue.trim();var f=FIX[t]||(fr&&FIXFR[t]);if(f)n.nodeValue=n.nodeValue.replace(t,f);else if((t==="\u00b7"||t==="\u2022")&&n.parentElement&&n.parentElement.childElementCount===0)n.parentElement.style.visibility="hidden";}
+  var fr=location.pathname.indexOf("/fr")===0;while((n=w.nextNode())){var t=n.nodeValue.trim();var f=FIX[t]||(fr?FIXFR[t]:FIXEN[t]);if(f)n.nodeValue=n.nodeValue.replace(t,f);else if((t==="\u00b7"||t==="\u2022")&&n.parentElement&&n.parentElement.childElementCount===0)n.parentElement.style.visibility="hidden";}
   var inp=document.querySelectorAll("input[placeholder]");for(var j=0;j<inp.length;j++){var p=inp[j].getAttribute("placeholder");if(FIX[p])inp[j].setAttribute("placeholder",FIX[p]);}
 }
 /* Avis Villa Montcalm : total public Airbnb (29, 4,97) + Vrbo (5, 10/10), releve le 2026-11-22. A mettre a jour au besoin. */
@@ -210,6 +211,8 @@ owners:["Services aux propriétaires | Gestion Hamann","Résidences secondaires,
 privacy:["Politique de confidentialité | Gestion Hamann",null],
 terms:["Termes et conditions | Gestion Hamann",null]},
 en:{
+about:["About Us | Gestion Hamann",null],
+listings:["Properties | Gestion Hamann",null],
 owners:["Property Owner Services | Gestion Hamann","Second homes, chalets and high-end condos. Gestion Hamann handles operations, the guest experience and the performance of your property."],
 contact:["Contact | Gestion Hamann","Have a question or a booking inquiry? Get in touch with Gestion Hamann. We personally respond to every message."],
 privacy:["Privacy Policy | Gestion Hamann",null],
@@ -295,6 +298,9 @@ var CSS=
 ".gh-filtres{justify-content:flex-start!important;gap:12px!important}.gh-filtres>label{margin:0!important}"+
 ".gh-listh1{font-family:'Cormorant Garamond',Georgia,serif!important;font-weight:600!important;font-size:clamp(36px,4vw,52px)!important;line-height:1.05!important;margin:24px 0 8px!important}"+
 "@media(min-width:901px){.gh-noicon svg{display:none!important}}"+
+".gh-desc{font-family:'Hanken Grotesk',system-ui,sans-serif!important;font-size:17px!important;line-height:1.75!important;font-weight:400!important;color:#2f3b35!important;letter-spacing:0!important}"+
+".gh-abouttext p{text-align:left!important}"+
+"@media(max-width:900px){.gh-hd .logo img,.gh-ft .logo img{margin-left:0!important}body.gh-listing footer.gh-ft{padding-bottom:120px!important}.gh-contactpage{padding-top:0!important}}"+
 ".kicker{display:none!important}.n{display:none!important}ol.steps>li::before,ul.steps>li::before,.steps>li::before{display:none!important}"+
 "li.gh-nodash::before{display:none!important}li.gh-nodash{padding-left:0!important;display:block!important}.gh-non{display:block!important}section#proprietes h2{text-align:left!important}"+
 "main blockquote::before{display:none!important}"+
@@ -337,7 +343,10 @@ function fixes(i){
 
   for(var k2=0;k2<as.length;k2++){var a2=as[k2];if(a2.closest("li")||a2.closest(".ghm"))continue;var gp=a2.parentElement;for(var u=0;u<3&&gp;u++){if(getComputedStyle(gp).display==="grid"){gp.classList.add("gh-grid2");break;}gp=gp.parentElement;}}
   if(i.p==="/pages/contact"){var hc=m.querySelector("h1");if(hc&&hc.parentElement&&!hc.parentElement.classList.contains("gh-contactpage")){hc.parentElement.classList.add("gh-contactpage");var pv=hc.previousElementSibling;if(pv&&pv.textContent.trim().length<20)pv.classList.add("gh-hide");}}
-  if(i.p==="/about-us"){var ha=m.querySelector("h1");if(ha)ha.classList.add("gh-abouth1");var ps=m.querySelectorAll("p");for(var w=0;w<ps.length;w++){var tx=ps[w].textContent.trim();if(!ps[w].closest(".ghm")){if(/^(Un s\u00e9jour exceptionnel|An exceptional stay)/.test(tx)&&ps[w].parentElement)ps[w].parentElement.classList.add("gh-abouttext");if(tx==="-"||tx==="\u2014")ps[w].classList.add("gh-hide");if(/^Mika[e\u00eb]l Hamann$/.test(tx))ps[w].classList.add("gh-sig");if(/^(Gestionnaire|Short-term|Hospitality|Manager)/.test(tx)&&/ - /.test(tx)){ps[w].innerHTML=ps[w].innerHTML.replace(/ - /g,"<br>");ps[w].classList.add("gh-sig");}else if(/^(Gestionnaire|Hospitality)/.test(tx)&&tx.length<120)ps[w].classList.add("gh-sig");}}}
+  if(i.p==="/about-us"){var ha=m.querySelector("h1");if(ha)ha.classList.add("gh-abouth1");var ps=m.querySelectorAll("p");for(var w=0;w<ps.length;w++){var tx=ps[w].textContent.trim();if(!ps[w].closest(".ghm")){if(/^(Un s\u00e9jour exceptionnel|An exceptional stay|A great stay)/.test(tx)&&ps[w].parentElement)ps[w].parentElement.classList.add("gh-abouttext");if(tx==="-"||tx==="\u2014")ps[w].classList.add("gh-hide");if(/^Mika[e\u00eb]l Hamann$/.test(tx))ps[w].classList.add("gh-sig");if(/^(Gestionnaire|Short-term|Hospitality|Manager)/.test(tx)&&/ - /.test(tx)){ps[w].innerHTML=ps[w].innerHTML.replace(/ - /g,"<br>");ps[w].classList.add("gh-sig");}else if(/^(Gestionnaire|Hospitality|Founder|Fondateur)/.test(tx)&&tx.length<120)ps[w].classList.add("gh-sig");}}}
+  document.body.classList.toggle("gh-listing",/\/listings\//.test(i.p));
+  if(/\/listings\//.test(i.p)){var hd=m.querySelectorAll("h2");for(var d2=0;d2<hd.length;d2++){if(hd[d2].textContent.length>150&&!hd[d2].classList.contains("gh-desc")){hd[d2].classList.add("gh-desc");var tn=hd[d2].firstChild;if(tn&&tn.nodeType===3&&!/\s$/.test(tn.nodeValue)){var sp2=tn.nodeValue.lastIndexOf(" ");if(sp2>100)tn.nodeValue=tn.nodeValue.slice(0,sp2);}}}}
+  var tw2=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null),nn;while((nn=tw2.nextNode())){var pe2=nn.parentElement;if(!pe2||/^(SCRIPT|STYLE|TEXTAREA|OPTION)$/.test(pe2.tagName))continue;var vv=nn.nodeValue;if(vv.indexOf("\u2014")<0&&vv.indexOf("\u2013")<0)continue;var nv2=vv.replace(/\s+[\u2014\u2013]\s+([^\u2014\u2013\n]{1,160}?)\s+[\u2014\u2013]\s+/g," ($1) ").replace(/\s+[\u2014\u2013]\s+/g,", ");if(nv2!==vv)nn.nodeValue=nv2;}
   if(i.p==="/all-listings"){var h=m.querySelector("h1");if(h)h.classList.add("gh-listh1");}
   var bs=m.querySelectorAll("button");for(var b=0;b<bs.length;b++){if(/carte|map/i.test(bs[b].textContent)&&bs[b].querySelector("svg"))bs[b].classList.add("gh-noicon");}
   var lis=m.querySelectorAll("li:not(.gh-nodash)");for(var q=0;q<lis.length;q++){var cs=getComputedStyle(lis[q],"::before");if(cs.content!=="none"&&cs.content!=="normal"&&parseFloat(cs.height)<=2&&parseFloat(cs.width)>=8&&parseFloat(cs.width)<=24)lis[q].classList.add("gh-nodash");}
