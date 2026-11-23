@@ -300,7 +300,8 @@ var CSS=
 "@media(min-width:901px){.gh-noicon svg{display:none!important}}"+
 ".gh-desc{font-family:'Hanken Grotesk',system-ui,sans-serif!important;font-size:17px!important;line-height:1.75!important;font-weight:400!important;color:#2f3b35!important;letter-spacing:0!important}"+
 ".gh-abouttext p{text-align:left!important}"+
-"@media(max-width:900px){.gh-hd .logo img,.gh-ft .logo img{margin-left:0!important}body.gh-listing footer.gh-ft{padding-bottom:120px!important}.gh-contactpage{padding-top:0!important}}"+
+"@media(max-width:900px){.gh-hd .logo img,.gh-ft .logo img{margin-left:0!important}body.gh-listing footer.gh-ft{padding-bottom:120px!important}main .gh-contactpage{padding-top:0!important}}"+
+"main .gh-contactpage{margin-top:0!important}"+
 ".kicker{display:none!important}.n{display:none!important}ol.steps>li::before,ul.steps>li::before,.steps>li::before{display:none!important}"+
 "li.gh-nodash::before{display:none!important}li.gh-nodash{padding-left:0!important;display:block!important}.gh-non{display:block!important}section#proprietes h2{text-align:left!important}"+
 "main blockquote::before{display:none!important}"+
