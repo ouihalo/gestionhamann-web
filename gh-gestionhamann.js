@@ -317,7 +317,9 @@ var CSS=
 ".gh-abouttext p{font-size:17px!important;line-height:1.75!important;color:#2f3b35!important;max-width:56ch!important;margin:0 0 18px!important}.gh-abouttext p.gh-sig{font:500 11px/1.8 'Hanken Grotesk',sans-serif!important;letter-spacing:.22em!important;text-transform:uppercase!important;color:#13231c!important;margin:0!important}.gh-abouttext p.gh-sig:first-of-type{margin-top:28px!important}"+
 
 "main a.cta,main a.btn.btn-dark{background:#a97d5c!important;border-color:#a97d5c!important;color:#fff!important}"+
-"main a.cta:hover,main a.btn.btn-dark:hover{background:#8f6a4d!important;border-color:#8f6a4d!important}";
+"main a.cta:hover,main a.btn.btn-dark:hover{background:#8f6a4d!important;border-color:#8f6a4d!important}"+
+"h1,h2,h3,h4,h5,h6,body .ghm h1,body .ghm h2,body .ghm h3,body .gh-listh1,body .gh-abouth1,body .gh-contactpage h1,body .gh-hero-block>h1 span{font-weight:500!important}"+
+"h1 em,h2 em,h3 em,body .ghm h2 em,body .ghm .remote h2 em,body .gh-hero-block>h1 .gh-l2{font-weight:400!important}";
 function info(){var raw=location.pathname;try{raw=decodeURIComponent(raw);}catch(e){}var fr=raw.indexOf("/fr")===0;var p=raw.replace(/^\/fr/,"").replace(/\/$/,"");return {fr:fr,p:p,t:fr?L.fr:L.en,px:fr?"/fr":""};}
 function style(){if(document.getElementById("gh-gabarit"))return;var s=document.createElement("style");s.id="gh-gabarit";s.textContent=CSS;document.head.appendChild(s);}
 function header(i){
