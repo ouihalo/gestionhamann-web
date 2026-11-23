@@ -244,3 +244,8 @@ if(document.readyState!=="loading")run();document.addEventListener("DOMContentLo
 var k=0,iv=setInterval(function(){run();if(++k>40)clearInterval(iv);},250);
 if(window.MutationObserver){var q;new MutationObserver(function(){clearTimeout(q);q=setTimeout(run,150);}).observe(document.documentElement,{childList:true,subtree:true});}
 })();
+
+/* Chargeur maquette 2026-11 : charge gh-maquette.js (meme version) sur l'accueil et A propos */
+(function(){var me=document.currentScript&&document.currentScript.src;if(!me)return;var url=me.replace(/gh-gestionhamann\.js.*$/,"gh-maquette.js");var done=false;
+function chk(){if(done)return;var p=location.pathname;try{p=decodeURIComponent(p)}catch(e){}var q=p.replace(/^\/fr/,"").replace(/\/$/,"");if(q!==""&&q!=="/about-us")return;done=true;var s=document.createElement("script");s.src=url;document.head.appendChild(s);}
+chk();var k=0,iv=setInterval(function(){chk();if(done||++k>2400)clearInterval(iv);},500);})();
